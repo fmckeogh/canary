@@ -1,0 +1,31 @@
+[package]
+name = "canary"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+debug = false
+lto = true
+opt-level = "s"
+incremental = false
+codegen-units = 1
+
+[dependencies]
+cortex-m = { version = "0.7.7", features = ["inline-asm", "critical-section-single-core"] }
+cortex-m-rt = "0.7.3"
+
+defmt = "0.3.5"
+defmt-rtt = "0.4.0"
+panic-probe = { version = "0.3.1", features = ["print-defmt"] }
+
+embassy-executor = { version = "0.5.0", features = ["arch-cortex-m", "executor-thread", "executor-interrupt", "defmt", "integrated-timers"] }
+embassy-time = { version = "0.3.0", features = ["defmt", "defmt-timestamp-uptime"] }
+embassy-nrf = { version = "0.1.0", features = ["nrf52832", "time-driver-rtc1", "gpiote", "unstable-pac", "time"] }
+embassy-embedded-hal = "0.1.0"
+embassy-sync = "0.5.0"
+
+aht20-async = "1.0.0"
+sgp30 = "0.3.2"
+epd-waveshare = "0.5.0"
+embedded-graphics = "0.8.1"
+static_cell = "2.0.0"
